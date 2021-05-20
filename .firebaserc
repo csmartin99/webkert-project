@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "webkert-project": {
+      "hosting": {
+        "webkert-project": [
+          "webkert-project"
+        ]
+      }
+    }
+  }
+}
