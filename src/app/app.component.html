@@ -1,1 +1,14 @@
-<h1>Hello World </h1>
+<div>
+  <table>
+    <tr *ngFor="let user of users">
+      <td>{{user.username}}</td>
+      <td>{{user.age}}</td>
+      <td>{{user.hometown}}</td>
+      <td>{{user.score}}</td>
+    </tr>
+  </table>
+</div>
+
+<div>
+  <button (click)="addUser()">Add user</button>
+</div>
