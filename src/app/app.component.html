@@ -1,14 +1,16 @@
 <div>
-  <table>
-    <tr *ngFor="let user of users">
-      <td>{{user.username}}</td>
-      <td>{{user.age}}</td>
-      <td>{{user.hometown}}</td>
-      <td>{{user.score}}</td>
+  <table border="1">
+    <tr *ngFor="let order of orders">
+      <td>{{order.id}}</td>
+      <td>{{order.priority}}</td>
+      <td>{{order.category}}</td>
+      <td>{{order.state}}</td>
+      <td>{{order.orderDate}}</td>
+      <td>{{order.completionDate}}</td>
     </tr>
   </table>
 </div>
 
 <div>
-  <button (click)="addUser()">Add user</button>
+  <button (click)="addOrder()">Add order</button>
 </div>
