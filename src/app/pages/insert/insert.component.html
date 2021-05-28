@@ -1,1 +1,20 @@
-<p>insert works!</p>
+<form [formGroup]="form">
+    <h3>Add order</h3>
+    <mat-form-field class="max-width">
+        <mat-label>Id</mat-label>
+        <input matInput focus formControlName="id" required>
+      </mat-form-field>
+    <mat-form-field class="max-width">
+      <mat-label>Category</mat-label>
+      <input matInput focus formControlName="category" required>
+    </mat-form-field>
+    <mat-form-field class="max-width">
+      <mat-label>Leírás</mat-label>
+      <textarea formControlName="description" matInput cdkTextareaAutosize
+        cdkAutosizeMinRows="2" cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+    <div style="display: flex; justify-content: flex-end;">
+      <button mat-button (click)="dialogRef.close()" class="margin-right">Back</button>
+      <button mat-button [mat-dialog-close]="form.value" [disabled]="form.invalid">Add</button>
+    </div>
+  </form>

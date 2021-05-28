@@ -1,19 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { User } from './models/user';
 import { ServiceOrder } from './models/service-order';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
-
-  myUser: User = {
-    username: 'user005',
-    age: 58,
-    hometown: 'Budapest',
-    score: 43
-  };
 
   order: ServiceOrder | undefined;
 
@@ -175,8 +167,17 @@ export class FirebaseService {
     return this.afs.collection('ServiceOrders').add(this.order);
   }
 
+  deleteOrder(id: string) {
+    return this.afs.collection('ServiceOrders').doc(id).delete();
+  }
+
   getOrderByPriority() {
-    return this.afs.collection<ServiceOrder>('ServiceOrders', ref => ref.orderBy('priority', 'desc')).valueChanges();
+    return this.afs.collection<ServiceOrder>('ServiceOrders', ref => ref.where('priority', '>=', '1').orderBy('priority', 'desc').limit(18)).valueChanges();
     //return this.afs.collection<ServiceOrder>('ServiceOrders', ref => ref.where('startDate', '>=', minAge).orderBy('age', 'desc')).valueChanges();
   }
+
+  getOrderById() {
+    return this.afs.collection<ServiceOrder>('ServiceOrders', ref => ref.orderBy('id', 'asc')).valueChanges();
+  }
+
 }

@@ -5,9 +5,9 @@
     padding: 15px;
 }
 
-app-movie-card {
-    min-width: 300px;
+app-order-card {
+    min-width: 250px;
     flex: 1;
-    margin: 5px;
+    margin: 15px;
     transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 }

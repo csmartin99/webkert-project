@@ -1,9 +1,9 @@
 <mat-toolbar color="primary"> 
     <mat-toolbar-row>
-        <a mat-button>
+        <a mat-button (click)="select('def')">
             Project
         </a>
-        <button mat-button *ngFor="let item of options">
+        <button mat-button *ngFor="let item of options" (click)="select(item.value)">
             {{item.title}}
         </button>
         <span style="flex: 1 1;"></span>

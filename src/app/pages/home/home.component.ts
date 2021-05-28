@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { OPTIONS } from 'src/app/db/options.database';
 import { FirebaseService } from 'src/app/firebase.service';
 import { ServiceOrder } from 'src/app/models/service-order';
+import { InsertComponent } from '../insert/insert.component';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   orders: ServiceOrder[] | undefined;
   page = 'home';
 
-  constructor(private firebaseService: FirebaseService) {
+  constructor(private firebaseService: FirebaseService, private dialog: MatDialog) {
     this.order = {
       "id": "42",
       "href": "http://serverlocation:port/serviceOrdering/v4/serviceOrder/42",
@@ -188,6 +190,26 @@ export class HomeComponent implements OnInit, OnDestroy {
     /*this.firebaseService.addUser().then(data => {
       console.log(data);
     });*/
+  }
+
+  addNewOrder() {
+    const dialogRef = this.dialog.open(InsertComponent, {});
+    dialogRef.afterClosed().subscribe(result => {
+      if (this.orders && result && result.title) {
+        this.orders.push(result);
+      }
+    });
+  }
+
+  deleteOrderOne() {
+    this.firebaseService.deleteOrder('42');
+    console.log("elso");
+  }
+
+  onSelect(event: string): void {
+    if (event) {
+      this.page = event;
+    }
   }
 
   ngOnDestroy() {

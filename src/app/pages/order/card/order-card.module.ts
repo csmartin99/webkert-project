@@ -1,3 +1,4 @@
+import { HomeModule } from './../../home/home.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -13,7 +14,7 @@ import { MatCardModule } from '@angular/material/card';
     OrderCardComponent
   ],
   imports: [
-    CommonModule, MatCardModule
+    CommonModule, MatCardModule, MatDialogModule, MatButtonModule, MatIconModule
   ],
   exports: [OrderCardComponent]
 })

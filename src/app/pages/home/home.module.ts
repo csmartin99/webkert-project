@@ -1,3 +1,5 @@
+import { GetModule } from './../get/get.module';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { InsertModule } from './../insert/insert.module';
 import { NavModule } from './../nav/nav.module';
@@ -16,7 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
   declarations: [HomeComponent],
   imports: [
     CommonModule, SplashScreenModule, OrderCardModule, DetailModule, NavModule, UpdateModule, InsertModule, 
-    MatButtonModule, MatIconModule
+    MatButtonModule, MatIconModule, MatDialogModule, GetModule
   ],
   exports: [HomeComponent]
 })

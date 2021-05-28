@@ -1,5 +1,7 @@
+import { HomeComponent } from './../../home/home.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { FirebaseService } from 'src/app/firebase.service';
 import { ServiceOrder } from 'src/app/models/service-order';
 import { DeleteOrderComponent } from '../../home/delete-order/delete-order.component';
 
@@ -11,12 +13,14 @@ import { DeleteOrderComponent } from '../../home/delete-order/delete-order.compo
 export class OrderCardComponent implements OnInit {
   @Input() order: ServiceOrder | undefined;
 
-  constructor() { }
+  constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
   }
 
-  deleteOrder(): void {
+  deleteOrderOne(id: string) {
+    this.firebaseService.deleteOrder(id);
+    console.log("elso");
     /*const dialogRef = this.dialog.open(DeleteOrderComponent, {});
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
