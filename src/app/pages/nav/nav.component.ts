@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Menu } from 'src/app/models/menu.model';
+import { Options } from 'src/app/models/options-model';
 
 @Component({
   selector: 'app-nav',
@@ -7,7 +7,9 @@ import { Menu } from 'src/app/models/menu.model';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  @Input() menu: Menu[] | undefined;
+  sMenuTitle: string | undefined;
+  @Input() selectedMenu: string | undefined;
+  @Input() options: Options[] = [];
   constructor() { }
 
   ngOnInit(): void {

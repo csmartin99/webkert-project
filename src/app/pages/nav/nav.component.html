@@ -1,3 +1,33 @@
-<mat-toolbar color="primary" class="mat-elevation-z6">
-    <span>Title</span>
+<mat-toolbar color="primary"> 
+    <mat-toolbar-row>
+        <a mat-button>
+            Project
+        </a>
+        <button mat-button *ngFor="let item of options">
+            {{item.title}}
+        </button>
+        <span style="flex: 1 1;"></span>
+        <button mat-button [matMenuTriggerFor]="menu">
+            XY&nbsp;
+            <mat-icon>arrow_drop_down</mat-icon>
+          </button>
+      
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item disabled>
+              <mat-icon>vertical_align_bottom</mat-icon>
+              <span>Get</span>
+            </button>
+            <button mat-menu-item disabled>
+              <mat-icon>add</mat-icon>
+              <span>Insert</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>create</mat-icon>
+              <span>Update</span>
+            </button>
+          </mat-menu>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <span class="splash-title">{{sMenuTitle}}</span>
+    </mat-toolbar-row>
 </mat-toolbar>

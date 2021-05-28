@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ServiceOrder } from 'src/app/models/service-order';
+import { DeleteOrderComponent } from '../../home/delete-order/delete-order.component';
 
 @Component({
   selector: 'app-order-card',
@@ -12,6 +14,15 @@ export class OrderCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  deleteOrder(): void {
+    /*const dialogRef = this.dialog.open(DeleteOrderComponent, {});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        
+      }
+    });*/
   }
 
 }

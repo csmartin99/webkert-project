@@ -1,8 +1,8 @@
 <span [ngSwitch]="page">
     <span *ngSwitchDefault>
-        <app-nav [menu]="menu"></app-nav>
+        <app-nav [options]="options"></app-nav>
         <span class="container">
-            <app-order-card *ngFor="let order of orders" [order]="order"></app-order-card>
+            <app-order-card *ngFor="let order of orders" [order]="order" appOnHover></app-order-card>
            </span>
            <span>
              <button (click)="addOrder()">Add order</button>

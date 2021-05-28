@@ -1,6 +1,6 @@
-import { MENU } from './../../db/menu.database';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { OPTIONS } from 'src/app/db/options.database';
 import { FirebaseService } from 'src/app/firebase.service';
 import { ServiceOrder } from 'src/app/models/service-order';
 
@@ -10,7 +10,7 @@ import { ServiceOrder } from 'src/app/models/service-order';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  menu = MENU;
+  options = OPTIONS;
   title = 'webkert-project';
   orderSub: Subscription | undefined;
   order: ServiceOrder | undefined;
