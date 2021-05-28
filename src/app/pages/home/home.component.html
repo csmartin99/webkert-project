@@ -1,1 +1,21 @@
-<p>home works!</p>
+<span [ngSwitch]="page">
+    <span *ngSwitchDefault>
+        <app-nav [menu]="menu"></app-nav>
+        <span class="container">
+            <app-order-card *ngFor="let order of orders" [order]="order"></app-order-card>
+           </span>
+           <span>
+             <button (click)="addOrder()">Add order</button>
+           </span>
+    </span>
+    <span *ngSwitchCase="'insert'">
+        <app-insert></app-insert>
+    </span>
+    <span *ngSwitchCase="'update'">
+        <app-update></app-update>
+    </span>
+    <span *ngSwitchCase="'detail'">
+        <app-detail></app-detail>
+    </span>
+    <app-splash-screen></app-splash-screen>
+</span>

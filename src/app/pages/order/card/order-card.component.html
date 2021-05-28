@@ -1,0 +1,15 @@
+<mat-card *ngIf="order">
+    <mat-card-header>
+        <mat-card-title>{{order.id}}</mat-card-title>
+        <mat-card-subtitle>{{order.category}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{order.priority}}</p>
+        <p [style.color]="order.state == 'acknowledged' ? 'green': 'red'">{{order.state}}</p>
+        <p>{{order.orderDate}}</p>
+        <p>{{order.completionDate}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>Ok</button>
+    </mat-card-actions>
+</mat-card>

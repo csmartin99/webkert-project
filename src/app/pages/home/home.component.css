@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 15px;
+}
+
+app-movie-card {
+    min-width: 300px;
+    flex: 1;
+    margin: 5px;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
