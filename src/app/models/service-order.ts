@@ -9,17 +9,17 @@ export interface ServiceOrder {
     externalReference?: ExternalReference[],
     href: string,
     id: string,
-    note: Note[],
+    note?: Note[],
     notificationContact?: string,
     orderDate: string,
     orderRelationship?: ServiceOrderRelationship[],
     priority: string,
-    relatedParty: RelatedParty[],
+    relatedParty?: RelatedParty[],
     requestedCompletionDate: string,
     requestedStartDate: string,
-    serviceOrderItem: ServiceOrderItem[],
-    startDate: string,
-    type: string,
+    serviceOrderItem?: ServiceOrderItem[],
+    startDate?: string,
+    type?: string,
     state: ServiceOrderStateType
 }
 

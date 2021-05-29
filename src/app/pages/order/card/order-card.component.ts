@@ -18,9 +18,8 @@ export class OrderCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  deleteOrderOne(id: string) {
-    this.firebaseService.deleteOrder(id);
-    console.log("elso");
+  deleteOrderOne(order: ServiceOrder) {
+    this.firebaseService.deleteOrder(order);
     /*const dialogRef = this.dialog.open(DeleteOrderComponent, {});
     dialogRef.afterClosed().subscribe(result => {
       if(result) {

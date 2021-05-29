@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { OPTIONS } from 'src/app/db/options.database';
 import { FirebaseService } from 'src/app/firebase.service';
 import { ServiceOrder } from 'src/app/models/service-order';
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   title = 'webkert-project';
   orderSub: Subscription | undefined;
   order: ServiceOrder | undefined;
-  orders: ServiceOrder[] | undefined;
+  orders: Observable<ServiceOrder[]> | undefined;
   page = 'home';
 
   constructor(private firebaseService: FirebaseService, private dialog: MatDialog) {
@@ -178,32 +179,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getOrdersByPriority() {
-    this.orderSub = this.firebaseService.getOrderByPriority().subscribe(orders => {
-      this.orders = orders;
-    });
-  }
-
-  addOrder() {
-    this.firebaseService.addOrder().then(data => {
-      console.log(data);
-    });
-    /*this.firebaseService.addUser().then(data => {
-      console.log(data);
-    });*/
+    this.orders = this.firebaseService.getOrderByPriority();
   }
 
   addNewOrder() {
     const dialogRef = this.dialog.open(InsertComponent, {});
-    dialogRef.afterClosed().subscribe(result => {
-      if (this.orders && result && result.title) {
-        this.orders.push(result);
+    dialogRef.afterClosed().subscribe((result: ServiceOrder) => {
+      console.log(result);
+      if (this.orders && result) {
+        this.firebaseService.addOrder(result);
       }
+    }, err => {
+      console.warn(err);
     });
-  }
-
-  deleteOrderOne() {
-    this.firebaseService.deleteOrder('42');
-    console.log("elso");
   }
 
   onSelect(event: string): void {

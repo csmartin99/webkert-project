@@ -9,9 +9,41 @@
       <input matInput focus formControlName="category" required>
     </mat-form-field>
     <mat-form-field class="max-width">
-      <mat-label>Leírás</mat-label>
+      <mat-label>Description</mat-label>
       <textarea formControlName="description" matInput cdkTextareaAutosize
         cdkAutosizeMinRows="2" cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+    <mat-form-field class="max-width">
+      <mat-label>Expected Completion Date</mat-label>
+      <input matInput focus formControlName="expectedCompletionDate" required>
+    </mat-form-field>
+    <mat-form-field class="max-width">
+      <mat-label>External Id</mat-label>
+      <input matInput focus formControlName="externalId" required>
+    </mat-form-field>
+    <mat-form-field class="max-width">
+      <mat-label>href</mat-label>
+      <input matInput focus formControlName="href" required>
+    </mat-form-field>
+    <mat-form-field class="max-width">
+      <mat-label>Order Date</mat-label>
+      <input matInput focus placeholder="Date()" formControlName="orderDate" required>
+    </mat-form-field>
+    <mat-form-field class="max-width">
+      <mat-label>Priority</mat-label>
+      <input matInput focus formControlName="priority" required>
+    </mat-form-field>
+    <mat-form-field class="max-width">
+      <mat-label>Requested Completion Date</mat-label>
+      <input matInput focus formControlName="requestedCompletionDate" required>
+    </mat-form-field>
+    <mat-form-field class="max-width">
+      <mat-label>Requested Start Date</mat-label>
+      <input matInput focus formControlName="requestedStartDate" required>
+    </mat-form-field>
+    <mat-form-field class="max-width">
+      <mat-label>State</mat-label>
+      <input matInput focus placeholder="new" formControlName="state" required>
     </mat-form-field>
     <div style="display: flex; justify-content: flex-end;">
       <button mat-button (click)="dialogRef.close()" class="margin-right">Back</button>

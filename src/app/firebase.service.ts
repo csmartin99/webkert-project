@@ -1,6 +1,7 @@
+import { ServiceOrder } from 'src/app/models/service-order';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { ServiceOrder } from './models/service-order';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { ServiceOrder } from './models/service-order';
 export class FirebaseService {
 
   order: ServiceOrder | undefined;
+  orderDoc: AngularFirestoreDocument<ServiceOrder> | undefined;
 
   constructor(private afs: AngularFirestore) {
     this.order = {
@@ -163,15 +165,18 @@ export class FirebaseService {
      }
    }
 
-  addOrder() {
-    return this.afs.collection('ServiceOrders').add(this.order);
+  addOrder(result: ServiceOrder) {
+    return this.afs.collection('ServiceOrders').add(result);
+    //return this.afs.collection('ServiceOrders').add(this.order);
   }
 
-  deleteOrder(id: string) {
-    return this.afs.collection('ServiceOrders').doc(id).delete();
+  deleteOrder(order: ServiceOrder) {
+    console.log(order.id);
+    this.orderDoc = this.afs.collection('ServiceOrders').doc(order.id);
+    this.orderDoc.delete();
   }
 
-  getOrderByPriority() {
+  getOrderByPriority(): Observable<ServiceOrder[]> {
     return this.afs.collection<ServiceOrder>('ServiceOrders', ref => ref.where('priority', '>=', '1').orderBy('priority', 'desc').limit(18)).valueChanges();
     //return this.afs.collection<ServiceOrder>('ServiceOrders', ref => ref.where('startDate', '>=', minAge).orderBy('age', 'desc')).valueChanges();
   }

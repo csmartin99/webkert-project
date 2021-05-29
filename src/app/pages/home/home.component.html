@@ -1,8 +1,8 @@
 <span [ngSwitch]="page">
     <app-nav [options]="options" (callSelectO)="onSelect($event)"></app-nav>
     <span *ngSwitchDefault>
-        <span class="container">
-            <app-order-card *ngFor="let order of orders" [order]="order" appOnHover></app-order-card>
+        <span class="container" *ngIf="orders">
+            <app-order-card *ngFor="let order of orders | async" [order]="order" appOnHover></app-order-card>
            </span>
            <button mat-fab class="action-btn" (click)="addNewOrder()">
             <mat-icon>add</mat-icon>
@@ -21,8 +21,8 @@
         <app-get></app-get>
     </span>
     <span *ngSwitchCase="'def'">
-        <span class="container">
-            <app-order-card *ngFor="let order of orders" [order]="order" appOnHover></app-order-card>
+        <span class="container" *ngIf="orders">
+            <app-order-card *ngFor="let order of orders | async" [order]="order" appOnHover></app-order-card>
            </span>
            <button mat-fab class="action-btn" (click)="addNewOrder()">
             <mat-icon>add</mat-icon>
