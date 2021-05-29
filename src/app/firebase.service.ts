@@ -165,24 +165,32 @@ export class FirebaseService {
      }
    }
 
-  addOrder(result: ServiceOrder) {
-    return this.afs.collection('ServiceOrders').add(result);
-    //return this.afs.collection('ServiceOrders').add(this.order);
+  async updateOrder(order: ServiceOrder, id?: string): Promise<string> {
+    console.log(id);
+    await this.afs.collection('ServiceOrders').doc(id).update(order);
+    return order.id;
   }
 
-  deleteOrder(order: ServiceOrder) {
+  async addOrder(data: ServiceOrder, id?: string): Promise<string> {
+    const uid = id ? id : this.afs.createId();
+    data.id = uid;
+    await this.afs.collection('ServiceOrders').doc(uid).set(data);
+    return uid;
+  }
+
+  async deleteOrder(order: ServiceOrder): Promise<string> {
     console.log(order.id);
-    this.orderDoc = this.afs.collection('ServiceOrders').doc(order.id);
-    this.orderDoc.delete();
+    await this.afs.collection('ServiceOrders').doc(order.id).delete();
+    return order.id;
   }
 
   getOrderByPriority(): Observable<ServiceOrder[]> {
-    return this.afs.collection<ServiceOrder>('ServiceOrders', ref => ref.where('priority', '>=', '1').orderBy('priority', 'desc').limit(18)).valueChanges();
+    return this.afs.collection<ServiceOrder>('ServiceOrders', ref => ref.where('priority', '>=', '1').orderBy('priority', 'desc')).valueChanges();
     //return this.afs.collection<ServiceOrder>('ServiceOrders', ref => ref.where('startDate', '>=', minAge).orderBy('age', 'desc')).valueChanges();
   }
 
   getOrderById() {
-    return this.afs.collection<ServiceOrder>('ServiceOrders', ref => ref.orderBy('id', 'asc')).valueChanges();
+    return this.afs.collection<ServiceOrder>('ServiceOrders', ref => ref.orderBy('id', 'asc').limit(18)).valueChanges();
   }
 
 }

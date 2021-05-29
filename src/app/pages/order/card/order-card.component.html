@@ -1,5 +1,5 @@
 <mat-card *ngIf="order">
-    <mat-card-header>
+    <mat-card-header [order]="order">
         <mat-card-title>{{order.id}}</mat-card-title>
         <mat-card-subtitle>{{order.category}}</mat-card-subtitle>
     </mat-card-header>
@@ -12,6 +12,9 @@
     <mat-card-actions>
         <button mat-fab class="action-btn" (click)="deleteOrderOne(order)">
             <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-fab class="action-btn" (click)="updateOrderOne(order)">
+            <mat-icon>edit</mat-icon>
           </button>
     </mat-card-actions>
 </mat-card>

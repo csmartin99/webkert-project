@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FirebaseService } from 'src/app/firebase.service';
 import { ServiceOrder } from 'src/app/models/service-order';
 import { DeleteOrderComponent } from '../../home/delete-order/delete-order.component';
+import { UpdateComponent } from '../../update/update.component';
 
 @Component({
   selector: 'app-order-card',
@@ -13,19 +14,25 @@ import { DeleteOrderComponent } from '../../home/delete-order/delete-order.compo
 export class OrderCardComponent implements OnInit {
   @Input() order: ServiceOrder | undefined;
 
-  constructor(private firebaseService: FirebaseService) { }
+  constructor(private firebaseService: FirebaseService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   deleteOrderOne(order: ServiceOrder) {
     this.firebaseService.deleteOrder(order);
-    /*const dialogRef = this.dialog.open(DeleteOrderComponent, {});
-    dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-        
+  }
+
+  updateOrderOne(orders: ServiceOrder) {
+    const dialogRef = this.dialog.open(UpdateComponent, {});
+    dialogRef.afterClosed().subscribe((order: ServiceOrder) => {
+      console.log(order);
+      if (order) {
+        this.firebaseService.updateOrder(order, orders.id);
       }
-    });*/
+    }, err => {
+      console.warn(err);
+    });
   }
 
 }
