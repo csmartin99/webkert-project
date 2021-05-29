@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription, Observable } from 'rxjs';
 import { OPTIONS } from 'src/app/db/options.database';
@@ -180,6 +179,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getOrdersByPriority() {
     this.orders = this.firebaseService.getOrderByPriority();
+    this.orderSub = this.orders.subscribe();
   }
 
   addNewOrder() {

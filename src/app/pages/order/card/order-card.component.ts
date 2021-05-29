@@ -1,9 +1,7 @@
-import { HomeComponent } from './../../home/home.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FirebaseService } from 'src/app/firebase.service';
 import { ServiceOrder } from 'src/app/models/service-order';
-import { DeleteOrderComponent } from '../../home/delete-order/delete-order.component';
 import { UpdateComponent } from '../../update/update.component';
 
 @Component({
